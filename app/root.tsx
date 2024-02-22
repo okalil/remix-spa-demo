@@ -1,14 +1,22 @@
+import React from 'react';
 import {
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-} from "@remix-run/react";
+} from '@remix-run/react';
+import type { LinksFunction, MetaFunction } from '@remix-run/node';
 
-export function Layout({ children }: { children: React.ReactNode }) {
+import styles from './styles/app.css?url';
+
+export const meta: MetaFunction = () => [{ title: 'Root Page Title' }];
+
+export const links: LinksFunction = () => [{ rel: 'stylesheet', href: styles }];
+
+export function Layout({ children }: React.PropsWithChildren) {
   return (
-    <html lang="en">
+    <html lang="pt">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -29,5 +37,5 @@ export default function App() {
 }
 
 export function HydrateFallback() {
-  return <p>Loading...</p>;
+  return null;
 }
